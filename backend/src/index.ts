@@ -1,5 +1,5 @@
 import "reflect-metadata";
-
+import { createConnection } from "typeorm";
 
 const express = require("express");
 const app = express();
@@ -11,7 +11,7 @@ const authRoutes = require('./routes/auth');
 
 
 
-
+export const connection = createConnection()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use((req, res, next) => {
