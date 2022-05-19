@@ -1,0 +1,19 @@
+@media (max-width: 768px) {
+
+    .app-sidebar {
+        width: 0px;
+    }
+
+    .app-sidebar__user-avatar {
+        width: 30px;
+        height: 30px;
+    }
+
+    .sidebar-mini.sidenav-toggled .app-sidebar__user-name,
+    .sidebar-mini.sidenav-toggled .app-sidebar__user-designation,
+    .sidebar-mini.sidenav-toggled .treeview-indicator {
+        display: none;
+    }
+
+
+}

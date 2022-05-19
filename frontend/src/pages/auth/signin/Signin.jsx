@@ -13,13 +13,31 @@ import LabelInput from "../../../components/custom/label-input/LabelInput";
 
 // Services functions
 import * as validation from "../../../services/validations/Input";
+import * as db from "../../../services/axios/Auth";
 import * as local from "../../../services/localStorage/AppLocalStorage";
 const Signin = () => {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
-    console.log('dataSend');
+    event.preventDefault();
+    const form = event.target;
+    const valideForm = validation.isValideForm(form);
+    if (valideForm) {
+      db.loginUser(form)
+        .then((response) => {
+          if (response.status === 200) {
+            local.setUserId(response.data.userId);
+            navigate("/home");
+          }
+        })
+        .catch((error) => {
+          alert("Echec de connexion");
+        });
+    }
   };
-
+  useEffect(() => {
+    const id = local.getUserId();
+    if (id) navigate("/home");
+  }, []);
   return (
     <div className="signin-page">
       <div className="container-img">

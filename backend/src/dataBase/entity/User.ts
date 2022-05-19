@@ -1,5 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { Login } from "./login";
+import { Publication } from "./Publication";
+import { Comment } from "./Comment"
+import { Like } from "./Like"
 
 @Entity({ name: "users" })
 
@@ -22,7 +25,21 @@ export class User {
     @Column({ type: "text" })
     profile: string;
 
+    @OneToMany(() => Comment, comment => comment.user)
+    @JoinColumn()
+    comments: Comment[];
+
+    @OneToMany(() => Like, like => like.user)
+    @JoinColumn()
+    likes: Like[];
+
+    @OneToMany(() => Publication, publication => publication.user)
+    @JoinColumn()
+    publications: Publication[];
+
     @OneToOne(() => Login)
     @JoinColumn()
     login: Login;
+
+
 }

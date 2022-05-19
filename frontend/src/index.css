@@ -1,0 +1,47 @@
+body {
+    background-color: #e0e0e0;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.success {
+    color: green;
+}
+
+#root {
+    height: 100%;
+}
+
+.app {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 0fr 1fr;
+}
+
+.app-content {
+    overflow: scroll;
+}
+
+.no-decoration {
+    text-decoration: none;
+    list-style: none;
+}
+
+.app-principal-color {
+    color: #1f447b;
+}
+
+/* 
+    Help to dev
+*/
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+/* UCHUCHCUCH */
