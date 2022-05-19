@@ -3,8 +3,8 @@ interface PublicationInterface {
     title: string,
     text: string,
     published: string,
-    image?: string,
-    user: number
+    image?: string
+    
 }
 
 export default PublicationInterface;
