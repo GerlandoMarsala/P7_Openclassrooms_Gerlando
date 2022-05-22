@@ -1,21 +1,24 @@
-import LabelInput from "../../../custom/label-input/LabelInput";
+// Component
+import InputFile from "../../../custom/inputFile/InputFile";
 
-import * as request from "../../../../services/axios/User";
+import * as axios from "../../../../services/axios/User";
 import * as local from "../../../../services/localStorage/AppLocalStorage";
 
 const ModalPhotoProfile = ({ photo }) => {
+  // Fonction qui permet de récupérer le commentaire envoyé
   const handleSubmit = (event) => {
+    // permet de ne pas envoyer le formulaire dans le vide
     event.preventDefault();
 
     const form = event.target;
 
-    request
+    axios
       .updateUserPhoto(form.image.files[0], local.getUserId())
       .finally(() => {
         window.location.reload(false);
       })
       .catch((error) => {
-        alert("Une erreur est survenus");
+        alert("Une erreur est survenu");
       });
   };
 
@@ -42,13 +45,7 @@ const ModalPhotoProfile = ({ photo }) => {
           </div>
           <form onSubmit={handleSubmit}>
             <div className="modal-body">
-              <LabelInput
-                labelText="Nouvelle photo de profil"
-                inputType="file"
-                inputName="image"
-                inputPlaceHolder=""
-                initialValue=""
-              />
+              <InputFile labelText="Modifier votre photo profil" />
             </div>
             <div class="modal-footer">
               <button

@@ -1,6 +1,6 @@
 const nameRegx = /^[a-zA-Z-]{2,50}$/;
 const birthdayRegx = /^\d{4}([./-])\d{2}\1\d{2}$/;
-const emailRegx = /^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+const emailRegx = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+[.]+[a-zA-Z]/;
 const passwordRegx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,20}/i;
 
 /*
@@ -11,34 +11,29 @@ const passwordRegx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{6,20}/i;
     * (?=.*[a-z])       #   doit contenir une lettre minuscule
     * (?=.*[\W])        #   doit contenir un caractère spécial à la fin
     * {8,20}            #   doit contenir entre 8 et 20 caractères
-    * \S                #   doit contenir un caractère non-blanc
 */
 
-
+//
+// Permet de vérifier la valeur d'un input par rapport à une regex
+// 
 function validateName(name) {
-    // console.log("name : ", nameRegx.test(name))
     return nameRegx.test(name);
 }
 
 function validateBirthday(birthday) {
-    // console.log("birthday : ", birthday)
     return birthdayRegx.test(birthday);
 }
 
 function validateEmail(email) {
-    // console.log("email : ", emailRegx.test(email))
     return emailRegx.test(email);
 }
 
 function validatePassword(password) {
-    // console.log("password : ", passwordRegx.test(password))
     return passwordRegx.test(password);
 }
 
 function validatePasswordConfirm(password, passwordConfirm) {
-    // console.log("confirm : ", password === passwordConfirm)
-    // console.log("password : ", password)
-    // console.log("passwordConfirm : ", passwordConfirm)
+
     return password === passwordConfirm;
 }
 
@@ -54,6 +49,10 @@ function valideComment(comment) {
     return comment.trim().length > 0;
 }
 
+// Fonction qui va prendre en parramètre 
+// le nom d'un input
+// et la valeur de l'input
+// Et va vérifier si la valeur de l'input est valide selon le nom de l'input en question
 export function valideKey(key, data, password) {
     switch (key) {
         case 'email':
@@ -80,6 +79,8 @@ export function valideKey(key, data, password) {
             return false;
     }
 }
+
+// Permet d'afficher un message d'erreur dynamiquement en fonction du nom de l'input
 
 export function getMessage(key) {
     switch (key) {
@@ -108,6 +109,10 @@ export function getMessage(key) {
     }
 }
 
+// Permet de vérifier si tous les champs sont valides
+// FormData permet de récupérer les données d'un formulaire
+// et de les transformer en objet
+// On va pouvoir parcourir tous les champs du formulaire grpace à data.entries()
 export function isValideForm(form) {
     const data = new FormData(form);
 

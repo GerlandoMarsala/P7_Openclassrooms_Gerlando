@@ -1,5 +1,6 @@
+// Component
 import ModalUserDetails from "./../../modal/user/userDetails/ModalUserDetails";
-import * as local from "../../../services/localStorage/AppLocalStorage";
+
 const UserInformation = (props) => {
   return (
     <>
@@ -22,11 +23,6 @@ const UserInformation = (props) => {
             <tr>
               <th>Date de naissance</th>
               <td>{props.birthday}</td>
-            </tr>
-
-            <tr>
-              <th>Métier</th>
-              <td>Full Stack</td>
             </tr>
           </tbody>
         </table>

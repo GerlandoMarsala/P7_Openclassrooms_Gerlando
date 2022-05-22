@@ -1,14 +1,23 @@
+// Components
 import SingleUserComment from "../../../home/singleUserComment/SingleUserComment";
+
+// Services
 import * as validation from "../../../../services/validations/Input";
-import * as db from "../../../../services/axios/Comments";
+import * as axios from "../../../../services/axios/Comments";
 import * as local from "../../../../services/localStorage/AppLocalStorage";
+
+// css
+import "./style.css";
 const ModalComments = (props) => {
+  // Fonction qui permet de récupérer le commentaire envoyé
   const handleSubmit = (event) => {
     const form = event.target;
+    // On vérifie que le formulaire est valide
     const validate = validation.isValideForm(form);
     if (validate) {
+      // Si oui, on récupère l'ID de l'utilisateur pour envoyer le commentaire en BDD qu'on liera également à la publication
       const userId = local.getUserId();
-      db.insertComment(form.comment.value, userId, props.publicationId);
+      axios.insertComment(form.comment.value, userId, props.publicationId);
     } else {
       event.preventDefault();
     }
@@ -36,6 +45,7 @@ const ModalComments = (props) => {
             ></button>
           </div>
           <div className="modal-body">
+            {/* On affiche tous les commentaires */}
             {props.comments.length > 0
               ? props.comments.map((comment) => (
                   <SingleUserComment
@@ -51,12 +61,12 @@ const ModalComments = (props) => {
                 ))
               : "Aucun commentaire pour cette publication"}
           </div>
-          <div className="modal-footer">
+          <div className="modal__footer">
             <form onSubmit={handleSubmit}>
-              <div class="input-group mb-3">
+              <div class="input-group w-100 p-3 mb-3">
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control  "
                   placeholder="Rédiger un commentaire"
                   aria-label="Recipient's username"
                   aria-describedby="button-addon2"

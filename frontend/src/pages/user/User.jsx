@@ -16,15 +16,18 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 // services
 import * as local from "../../services/localStorage/AppLocalStorage";
-import * as db from "../../services/axios/User";
+import * as axios from "../../services/axios/User";
 
 const User = () => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
+
+  // On redirige l'utilisateur si son ID n'est pas trouvé dans le localStorage
+  // Soit il est déjà connecté, soit il n'a pas encore de compte
   useEffect(() => {
     const id = local.getUserId();
     if (!id) navigate("/auth");
-    db.getUserById(id).then((user) => {
+    axios.getUserById(id).then((user) => {
       setUser(user.data);
     });
   }, []);
@@ -40,13 +43,18 @@ const User = () => {
         <MultipleBreadCrumb
           title={`${user.firstname} ${user.lastname}`}
           icon={faUser}
-          linkName="Mon profil"
-          path="/user"
+          links={[
+            {
+              linkName: "Mon profil",
+              path: "/user",
+            },
+          ]}
+          endLink={`${user.firstname} ${user.lastname}`}
         />
 
         <div className="container">
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-5">
               <PhotoProfile profile={user.profile} />
               <UserInformation
                 firstname={user.firstname}
@@ -56,7 +64,7 @@ const User = () => {
               />
             </div>
 
-            <div className="col-md-8">
+            <div className="col-md-7">
               <Publications publications={user.publications} />
             </div>
           </div>
