@@ -65,7 +65,7 @@ const NavBar = () => {
           icon={faBars}
         />
         <Link className="app-navbar-brand" to="/home">
-          <img className="logoNav" src={logo2} />
+          <img className="logoNav" src={logo2} alt="logo" />
         </Link>
       </nav>
       <Outlet />

@@ -34,7 +34,7 @@ const ModalComments = (props) => {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">
+            <h5 className="modal-title">
               Commentaire de la publication n°{props.publicationId}
             </h5>
             <button
@@ -75,7 +75,7 @@ const ModalComments = (props) => {
                 <button
                   className="btn btn-outline-secondary"
                   type="submit"
-                  id="button-addon2"
+                  
                 >
                   Envoyer
                 </button>

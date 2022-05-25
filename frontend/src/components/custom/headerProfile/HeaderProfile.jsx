@@ -7,9 +7,9 @@ const HeaderProfile = (props) => {
         <img src={props.profile} alt="avatar" />
       </div>
       <div className="header-profile__info">
-        <h3>
+        <h2>
           {props.firstname} {props.lastname}
-        </h3>
+        </h2>
         <div>{props.published}</div>
       </div>
     </div>
